@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import request, render_template, g
+from flask import request, render_template
 from image import preprocess_image
 from model import load_model
 import numpy as np
