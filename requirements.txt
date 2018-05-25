@@ -9,6 +9,8 @@ MarkupSafe==1.0
 numpy==1.14.3
 Pillow==5.1.0
 PyYAML==3.12
+redis==2.10.6
+rq==0.10.0
 scipy==1.1.0
 six==1.11.0
 Theano==1.0.1
