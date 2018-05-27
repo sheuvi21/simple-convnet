@@ -13,7 +13,7 @@ q = Queue(connection=conn)
 
 @app.route('/')
 def main():
-    return render_template('main.html')
+    return render_template('main.html', labels=LABELS)
 
 
 @app.route('/process/', methods=['POST'])
