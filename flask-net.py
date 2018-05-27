@@ -1,12 +1,16 @@
 from flask import Flask
-from flask import request, render_template, url_for, redirect, jsonify, abort
+from flask import request, render_template, url_for, jsonify, abort
+from flask_wtf.csrf import CSRFProtect
 from tools.image import preprocess_image
 from tools.model import predict
 from rq import Queue
 from worker import conn
-from settings import LABELS
+from settings import LABELS, SECRET_KEY
 
 app = Flask(__name__)
+app.secret_key = SECRET_KEY
+
+csrf = CSRFProtect(app)
 
 q = Queue(connection=conn)
 
