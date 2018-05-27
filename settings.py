@@ -11,4 +11,4 @@ LABELS = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse
 
 REDIS_URL = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
 
-SECRET_KEY = '4V7wkf2e5xeNxCJsd2zn4JC9th96D8'
+SECRET_KEY = os.getenv('SECRET_KEY', '4V7wkf2e5xeNxCJsd2zn4JC9th96D8')
