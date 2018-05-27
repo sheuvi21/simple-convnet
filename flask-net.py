@@ -1,36 +1,44 @@
 from flask import Flask
-from flask import request, render_template, url_for, redirect
-from image import preprocess_image
-from model import predict
+from flask import request, render_template, url_for, redirect, jsonify, abort
+from tools.image import preprocess_image
+from tools.model import predict
 from rq import Queue
 from worker import conn
-
-LABELS = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+from settings import LABELS
 
 app = Flask(__name__)
 
+q = Queue(connection=conn)
 
-@app.route('/', methods=['GET', 'POST'])
+
+@app.route('/')
 def main():
-    if request.method == 'POST' and 'image' in request.files:
+    return render_template('main.html')
+
+
+@app.route('/process/', methods=['POST'])
+def do_predict():
+    if 'image' in request.files:
         im = preprocess_image(request.files['image'].stream)
-        q = Queue(connection=conn)
         job = q.enqueue(predict, im)
-        return redirect(url_for('get_result', job_id=job.id))
+        return jsonify(ok=True, get_url=url_for('get_result', job_id=job.id))
     else:
-        return render_template('main.html')
+        abort(406)  # Not Acceptable
 
 
 @app.route('/result/<job_id>/')
 def get_result(job_id):
-    q = Queue(connection=conn)
     job = q.fetch_job(job_id)
     predictions = job.result
     if predictions is None:
-        return render_template('loading.html')
+        return jsonify(ok=False)
     else:
-        predictions *= 100
-        return render_template('result.html', labels=LABELS, predictions=predictions)
+        predictions = zip(LABELS, predictions.tolist())
+        predictions = [{
+            'label': label,
+            'prediction': prediction
+        } for label, prediction in predictions]
+        return jsonify(ok=True, result=predictions)
 
 
 if __name__ == '__main__':

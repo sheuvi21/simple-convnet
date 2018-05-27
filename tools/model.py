@@ -1,13 +1,10 @@
 from keras.models import load_model as _load_model
-import os
 import numpy as np
-
-
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+from settings import MODEL_PATH
 
 
 def load_model():
-    return _load_model(os.path.join(APP_ROOT, 'cifar10_model.h5'))
+    return _load_model(MODEL_PATH)
 
 
 def predict(x):

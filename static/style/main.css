@@ -1,0 +1,8 @@
+#resultArea {
+    width: 100%;
+    border: none;
+    resize: none;
+    outline: none;
+    background: none;
+    color: inherit;
+}
