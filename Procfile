@@ -1,2 +1,2 @@
 web: gunicorn flask-net:app --log-file=-
-worker: python worker.py
+worker: python run_worker.py
