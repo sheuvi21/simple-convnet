@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <title>Распознавание изображений</title>
     <link href="{{ url_for('static', filename='style/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style/fileinput.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='style/main.css') }}" rel="stylesheet">
     <script src="{{ url_for('static', filename='script/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='script/underscore-min.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/fontawesome-all.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/fileinput.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/fileinput-ru.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/fa-theme.min.js') }}"></script>
     <script src="{{ url_for('static', filename='script/main.js') }}"></script>
 </head>
 <body>
 <div class="container">
     <h3>Распознавание изображений</h3>
-    <p>Классы: {{ ', '.join(labels) }}</p>
+    <p>Классы изображений: {{ ', '.join(labels) }}</p>
     <form method="post" enctype="multipart/form-data" action="{{ url_for('do_predict') }}" id="processForm">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <input type="file" name="image" accept="image/*" id="image">
-        <input type="submit" value="Распознать">
+        <input type="file" name="image" accept="image/*" id="imageInput">
     </form>
     <textarea id="resultArea" rows="8" disabled="disabled"></textarea>
 </div>

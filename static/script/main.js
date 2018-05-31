@@ -1,6 +1,7 @@
 $(function () {
     var form = $('#processForm'),
         submitButton = form.find('input[type=submit]'),
+        imageInput = $('#imageInput'),
         resultArea = $('#resultArea');
 
     function getResult(url) {
@@ -23,6 +24,19 @@ $(function () {
             });
         }, 2000);
     }
+
+    imageInput.fileinput({
+        language: 'ru',
+        theme: 'fa',
+        allowedFileTypes: ['image'],
+        showRemove: false,
+        showPreview: false,
+        browseLabel: 'Выбрать изображение',
+        browseIcon: '<i class="fa fa-file-image"></i>&nbsp;',
+        uploadLabel: 'Распознать',
+        uploadTitle: 'Распознать выбранное изображение',
+        uploadIcon: '<i class="fa fa-magic"></i>&nbsp;'
+    });
 
     form.submit(function (e) {
         e.preventDefault();
