@@ -1,3 +1,13 @@
+#processForm {
+    margin-bottom: 1rem;
+}
+
+.btn-file input[type=file] {
+    left: auto;
+    right: 0;
+    min-width: 200%;
+}
+
 #resultArea {
     width: 100%;
     border: none;

@@ -5,6 +5,7 @@ $(function () {
         resultArea = $('#resultArea');
 
     function getResult(url) {
+        resultArea.empty();
         var timer = setInterval(function () {
             $.get(url, function (response) {
                 if (response['ok']) {
@@ -15,7 +16,7 @@ $(function () {
                     var result = _.max(response['result'], function (item) {
                         return item['prediction'];
                     });
-                    resultArea.append('Я думаю, это ' + result['label'] + '\n');
+                    resultArea.append('Я думаю, это ' + result['label'] + '.\n');
                 }
                 else {
                     resultArea.append('...\n');
