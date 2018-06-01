@@ -18,7 +18,9 @@
 <body>
 <div class="container">
     <h3>Распознавание изображений</h3>
-    <p>Классы изображений: {{ ', '.join(labels) }}.</p>
+    <p>Классы изображений: {{ ', '.join(labels) }}.<br>
+        Нейросеть обучена на наборе изображений
+        <a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank" title="CIFAR-10">CIFAR-10</a>.</p>
     <form method="post" enctype="multipart/form-data" action="{{ url_for('do_predict') }}" id="processForm">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <input type="file" name="image" accept="image/*" id="imageInput">
