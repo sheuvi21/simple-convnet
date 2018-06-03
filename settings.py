@@ -5,9 +5,9 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 MODEL_PATH = os.path.join(APP_ROOT, 'model/cifar10_model.h5')
 
-IMAGE_SIZE = (32, 32)
+LABELS_PATH = os.path.join(APP_ROOT, 'model/labels.json')
 
-LABELS = ['самолёт', 'автомобиль', 'птица', 'кот', 'олень', 'собака', 'лягушка', 'лошадь', 'корабль', 'грузовик']
+IMAGE_SIZE = (32, 32)
 
 REDIS_URL = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
 

@@ -36,7 +36,7 @@ model.fit(X_train / 255.0, to_categorical(y_train), epochs=60, verbose=0, callba
 
 
 score = model.evaluate(X_test / 255.0, to_categorical(y_test))
-print(score)
+print('test loss: ' + str(score[0]) + ', test accuracy: ' + str(score[1]))
 
 
 model.save('cifar10_model.h5')

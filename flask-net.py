@@ -2,10 +2,10 @@ from flask import Flask
 from flask import request, render_template, url_for, jsonify, abort
 from flask_wtf.csrf import CSRFProtect
 from tools.image import preprocess_image
-from tools.model import predict
+from tools.model import predict, get_labels
 from rq import Queue
 from run_worker import conn
-from settings import LABELS, SECRET_KEY
+from settings import SECRET_KEY
 
 
 app = Flask(__name__)
@@ -18,7 +18,8 @@ q = Queue(connection=conn)
 
 @app.route('/')
 def main():
-    return render_template('main.html', labels=LABELS)
+    labels = get_labels()
+    return render_template('main.html', labels=labels)
 
 
 @app.route('/process/', methods=['POST'])
@@ -38,7 +39,8 @@ def get_result(job_id):
     if predictions is None:
         return jsonify(ok=False)
     else:
-        predictions = zip(LABELS, predictions.tolist())
+        labels = get_labels()
+        predictions = zip(labels, predictions.tolist())
         predictions = [{
             'label': label,
             'prediction': prediction
