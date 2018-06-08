@@ -11,7 +11,7 @@ $(function () {
                 if (response['ok']) {
                     clearInterval(timer);
 
-                    imageInput.fileinput('clear');
+                    imageInput.fileinput('clear').fileinput('enable');
 
                     var result = _.max(response['result'], function (item) {
                         return item['prediction'];
@@ -54,5 +54,9 @@ $(function () {
         if (response['ok']) {
             getResult(response['get_url']);
         }
+    });
+
+    imageInput.on('fileunlock', function (e) {
+        imageInput.fileinput('lock');
     });
 });
