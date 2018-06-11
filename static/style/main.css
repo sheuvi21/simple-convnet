@@ -5,14 +5,82 @@
 .btn-file input[type=file] {
     left: auto;
     right: 0;
+
     min-width: 200%;
 }
 
 #resultArea {
     width: 100%;
+
     border: none;
     resize: none;
     outline: none;
     background: none;
     color: inherit;
+}
+
+.container {
+    position: relative;
+
+    background: white;
+}
+
+/* Napstablook theme */
+
+body::before {
+    content: '';
+    display: block;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background: url(/static/image/bg.jpg) no-repeat;
+
+    transition: opacity 2s;
+    opacity: 0;
+}
+
+body.napstablook::before {
+    opacity: 1;
+}
+
+.container::before,
+.container::after {
+    content: '';
+    display: block;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    transition: opacity 2s;
+    opacity: 0;
+}
+
+.napstablook .container::before,
+.napstablook .container::after {
+    opacity: 1;
+}
+
+.container::before {
+    width: 80px;
+    height: 46px;
+
+    margin-bottom: -62px;
+    margin-left: 20px;
+
+    background: url(/static/image/napstablook.png) no-repeat;
+}
+
+.container::after {
+    width: 62px;
+    height: 38px;
+
+    margin-bottom: -54px;
+    margin-left: 120px;
+
+    background: url(/static/image/hero.png) no-repeat;
 }

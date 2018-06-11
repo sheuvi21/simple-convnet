@@ -1,6 +1,8 @@
 $(function () {
     var form = $('#processForm'),
         imageInput = $('#imageInput'),
+        body = $('body'),
+        player = $('.player'),
         resultArea = $('#resultArea');
 
     function getResult(url) {
@@ -58,5 +60,13 @@ $(function () {
 
     imageInput.on('fileunlock', function (e) {
         imageInput.fileinput('lock');
+    });
+
+    player.on('play', function (e) {
+        body.addClass('napstablook');
+    });
+
+    player.on('pause', function (e) {
+        body.removeClass('napstablook');
     });
 });
