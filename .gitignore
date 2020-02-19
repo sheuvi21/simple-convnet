@@ -1,5 +1,6 @@
 venv/
 .venv/
 .idea/
+.vscode/
 *.pyc
 logs/
